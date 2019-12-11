@@ -2,7 +2,7 @@ import React from 'react'
 
 
 
-const todoForm = (props) => {
+const Form = (props) => {
     return (
         <form onSubmit={props.handleOnSubmit}>
             <div className='todo Form'>
@@ -20,4 +20,4 @@ const todoForm = (props) => {
 
 }
 
-export default todoForm;
+export default Form;
