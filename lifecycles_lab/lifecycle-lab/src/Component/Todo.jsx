@@ -1,49 +1,40 @@
- import React, { Component } from 'react';
+ import React from 'react';
+ import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const TodoList = (props) =>{
-    const {todo} = props
-    return(
+
+class TodoList extends React.Component {
+    // const {todo} = props
+    componentDidMount(){
+        toast(`New todo: ${this.props.todo}`)
+    }
+
+    componentWillUnmount(){
+        toast(`Todo Removed: ${this.props.todo}`)
+    }
+
+    delete = () => {
+// console.log(this.props.index)
+        this.props.handleOnDelete(this.props.index)
+    }
+    
+    render(){
+        return(
       
-            <li>
-                <h5> {todo} </h5>
+            <li > 
+                <h5 > {this.props.todo} 
+                <button onClick = {this.delete}> x
+                </button>
+                </h5> 
+            
             </li>
        
-    )
-
+    
+    
+      
+        )
+    }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 export default TodoList;
-
-
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-
-// // minified version is also included
-// // import 'react-toastify/dist/ReactToastify.min.css';
-
-// class Todo extends Component {
-//   notify = () => toast("Wow so easy !");
-
-//   render(){
-//     return (
-//       <div>
-//         <button onClick={this.notify}>Notify !</button>
-//         <ToastContainer />
-//       </div>
-//     );
-//   }
-// }
-
-// export default Todo;

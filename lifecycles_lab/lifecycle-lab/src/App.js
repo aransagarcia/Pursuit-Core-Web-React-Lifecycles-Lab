@@ -2,12 +2,16 @@ import React from 'react';
 import Form from './Component/Form'
 import Todo from './Component/Todo'
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+//import { ToastContainer, toast } from 'react-toastify';
+//import 'react-toastify/dist/ReactToastify.css';
 
 
 import './App.css';
 
+toast.configure()
 
 class App extends React.Component {
   constructor() {
@@ -19,60 +23,80 @@ class App extends React.Component {
   }
 
   handleOnChangeItem = (event) => {
-    event.preventDefault()
     const value = event.target.value
     this.setState({
-      todo:value 
+      todo: value
     })
   }
 
 
 
-  handleOnSubmit = (event) =>{
+  handleOnSubmit = (event) => {
     event.preventDefault();
-    const {todo, todoList} = this.state
+    const { todo, todoList } = this.state
     let copyArray = todoList
-    copyArray.push({todo})
+    copyArray.push({ todo })
     this.setState({
+      todo: '',
       todoList: copyArray
     })
-  }  
-
-
-
-  componentDidMount(){
-    console.log(this.state, 'App component mounted')
   }
-  componentDidUpdate() {
-    console.log(this.state, 'state being updated')
-  };
-  
+
+
+  handleOnDelete = (index) => {
+    console.log(index)
+    const {todoList} = this.state
+    todoList.splice(index,1)
+    this.setState({
+      todoList: todoList
+    })
+
+  }
+
+
+
+  // componentDidMount() {
+  //   console.log(this.state, 'App component mounted')
+  // }
+  // componentDidUpdate() {
+  //   console.log(this.state, 'state being updated')
+  // };
+
 
 
   render() {
+    // toast('render sucess')
     return (
       <div className='App'>
         <h1> To Do  List </h1>
+   
 
-        <Form 
-         handleOnChangeItem={this.handleOnChangeItem}
-         handleOnSubmit={this.handleOnSubmit}
-         />
 
-<ul className="Todo">
-              <h5 className='item'></h5>
+        <Form
+          handleOnChangeItem={this.handleOnChangeItem}
+          handleOnSubmit={this.handleOnSubmit}
+          todo = {this.state.todo}
+         
+        />
 
-              {this.state.todoList.map((item, i) => {
-                return (
-                  <Todo
-                  todo = {item.todo}
-                    key={i}
-                  />
-                )
-              })
-              }
-            </ul>
+        <ul className="Todo" >
+          <h5 className='item'></h5>
 
+          {this.state.todoList.map((item, i) => {
+            return (
+              <Todo 
+                todo={item.todo}
+                key={i}
+                index={i}
+                 handleOnDelete={this.handleOnDelete}
+
+              />
+
+            )
+          })
+          }
+        </ul>
+    
 
       </div>
     )

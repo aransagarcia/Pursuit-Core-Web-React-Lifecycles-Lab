@@ -3,14 +3,16 @@ import React from 'react'
 
 
 const Form = (props) => {
+    const todo = props.todo
+    //  console.log()
     return (
         <form onSubmit={props.handleOnSubmit}>
             <div className='todo Form'>
                 <label></label>
                 <input
                     type='text'
-                    placeholder="Clean Bedroom"
                     onChange = {props.handleOnChangeItem}
+                     value = {todo}
                 >
                 </input>
 
