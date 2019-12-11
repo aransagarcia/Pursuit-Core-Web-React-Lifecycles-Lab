@@ -86,7 +86,6 @@ class App extends React.Component {
             return (
               <Todo 
                 todo={item.todo}
-                key={i}
                 index={i}
                  handleOnDelete={this.handleOnDelete}
 

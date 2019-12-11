@@ -6,11 +6,11 @@ import 'react-toastify/dist/ReactToastify.css';
 class TodoList extends React.Component {
     // const {todo} = props
     componentDidMount(){
-        toast(`New todo: ${this.props.todo}`)
+        toast.success(`New todo: ${this.props.todo}`)
     }
 
     componentWillUnmount(){
-        toast(`Todo Removed: ${this.props.todo}`)
+        toast.error(`Todo Removed: ${this.props.todo}`)
     }
 
     delete = () => {
